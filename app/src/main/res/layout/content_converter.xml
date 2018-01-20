@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.zaned.cryptoconverter.Converter"
+    tools:showIn="@layout/activity_converter"
+    android:background="@color/colorBackground">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:paddingTop="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+        <pl.droidsonroids.gif.GifTextView
+            android:id="@+id/gif_container"
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="20dp">
+            <EditText
+                android:id="@+id/from_price"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:hint="1.00"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textColorHint="@color/lightgrey"
+                android:backgroundTint="@color/white"
+                android:inputType="numberDecimal" />
+            <EditText
+                android:id="@+id/from_symbol"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/lightgrey"
+                android:backgroundTint="@color/white"
+                android:hint="BTC"
+                android:inputType="textCapCharacters" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/from_string"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp"
+            android:textSize="15pt"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textStyle="italic"
+            android:text="=" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="20dp">
+            <EditText
+                android:id="@+id/phone"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:hint="12731.45"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textColorHint="@color/lightgrey"
+                android:backgroundTint="@color/white"
+                android:inputType="phone" />
+            <EditText
+                android:id="@+id/symbol"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/lightgrey"
+                android:backgroundTint="@color/white"
+                android:hint="USD"
+                android:inputType="textCapCharacters" />
+
+        </LinearLayout>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
