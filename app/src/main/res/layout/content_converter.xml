@@ -39,7 +39,7 @@
                 android:textColorHint="@color/lightgrey"
                 android:backgroundTint="@color/white"
                 android:inputType="numberDecimal" />
-            <EditText
+            <AutoCompleteTextView
                 android:id="@+id/from_symbol"
                 android:imeOptions="actionDone"
                 android:layout_width="0dp"
@@ -81,7 +81,7 @@
                 android:textColorHint="@color/lightgrey"
                 android:backgroundTint="@color/white"
                 android:inputType="numberDecimal" />
-            <EditText
+            <AutoCompleteTextView
                 android:id="@+id/to_symbol"
                 android:imeOptions="actionDone"
                 android:layout_width="0dp"

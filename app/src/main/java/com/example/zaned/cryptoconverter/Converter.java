@@ -6,6 +6,8 @@ import android.text.InputType;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -57,11 +59,17 @@ public class Converter extends AppCompatActivity {
         }
 
         final EditText fromPrice = (EditText) findViewById((R.id.from_price));
-        final EditText fromSymbol = (EditText) findViewById((R.id.from_symbol));
+        final AutoCompleteTextView fromSymbol = (AutoCompleteTextView) findViewById((R.id.from_symbol));
         final EditText toPrice = (EditText) findViewById((R.id.to_price));
-        final EditText toSymbol = (EditText) findViewById((R.id.to_symbol));
+        final AutoCompleteTextView toSymbol = (AutoCompleteTextView) findViewById((R.id.to_symbol));
         spinner = (ProgressBar) findViewById(R.id.progressBar1);
         spinner.setVisibility(View.GONE);
+
+        String[] COINS = getResources().getStringArray(R.array.currencies);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line, COINS);
+        fromSymbol.setAdapter(adapter);
+        toSymbol.setAdapter(adapter);
 
 
         fromPrice.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -141,7 +149,7 @@ public class Converter extends AppCompatActivity {
         });
     }
 
-    private void fetchPrices(final EditText fromPrice, EditText fromSymbol, final EditText toPrice, final EditText toSymbol) {
+    private void fetchPrices(final EditText fromPrice, AutoCompleteTextView fromSymbol, final EditText toPrice, final AutoCompleteTextView toSymbol) {
         String url = "https://min-api.cryptocompare.com/data/price?fsym=";
         url = url + fromSymbol.getText() + "&tsyms=" + toSymbol.getText();
 
