@@ -33,7 +33,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="1.00"
+                android:text="0.0"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textColorHint="@color/lightgrey"
@@ -41,6 +41,7 @@
                 android:inputType="numberDecimal" />
             <EditText
                 android:id="@+id/from_symbol"
+                android:imeOptions="actionDone"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
@@ -51,6 +52,7 @@
                 android:backgroundTint="@color/white"
                 android:text="BTC"
                 android:inputType="textCapCharacters" />
+
         </LinearLayout>
         <TextView
             android:id="@+id/from_string"
@@ -69,17 +71,19 @@
             android:paddingBottom="20dp">
             <EditText
                 android:id="@+id/to_price"
+                android:imeOptions="actionDone"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="12731.45"
+                android:text="0.0"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textColorHint="@color/lightgrey"
                 android:backgroundTint="@color/white"
-                android:inputType="phone" />
+                android:inputType="numberDecimal" />
             <EditText
                 android:id="@+id/to_symbol"
+                android:imeOptions="actionDone"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"

@@ -22,9 +22,6 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 import android.view.KeyEvent;
-import android.view.View.OnKeyListener;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -33,14 +30,16 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import pl.droidsonroids.gif.GifDrawable;
 import pl.droidsonroids.gif.GifTextView;
 
 
 public class Converter extends AppCompatActivity {
 
-    private static final double RATE  = 12522.00;
-    private ProgressBar spinner = null;
+    private ProgressBar spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,7 +114,7 @@ public class Converter extends AppCompatActivity {
 
                     // hide keyboard
                     InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(fromSymbol.getWindowToken(), 0);
+                    imm.hideSoftInputFromWindow(fromPrice.getWindowToken(), 0);
                     return true;
                 }
                 return false;
@@ -130,7 +129,7 @@ public class Converter extends AppCompatActivity {
                     spinner.setVisibility(View.VISIBLE);
 
                     // make request
-                    fetchPrices(toPrice, toSymbol, fromPrice, fromSymbol);
+                    fetchPrices(fromPrice, fromSymbol, toPrice, toSymbol);
 
                     // hide keyboard
                     InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -140,13 +139,10 @@ public class Converter extends AppCompatActivity {
                 return false;
             }
         });
-
-
-
     }
 
-    private void fetchPrices(final EditText fromPrice, EditText fromSymbol, final EditText toPrice, EditText toSymbol) {
-        String url = "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=BTC,USD,EUR";
+    private void fetchPrices(final EditText fromPrice, EditText fromSymbol, final EditText toPrice, final EditText toSymbol) {
+        String url = "https://min-api.cryptocompare.com/data/price?fsym=";
         url = url + fromSymbol.getText() + "&tsyms=" + toSymbol.getText();
 
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -155,11 +151,20 @@ public class Converter extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         System.out.println(response);
-
+                        Double rate = 0.0;
+                        try {
+                            JSONObject json = new JSONObject(response);
+                            String rateString = json.get(toSymbol.getText().toString()).toString();
+                            System.out.println(rateString);
+                            rate = Double.parseDouble(rateString);
+                            System.out.println(rate);
+                        } catch (JSONException e) {
+                            System.err.print(e);
+                        }
                         double _fromPrice = Double.parseDouble(fromPrice.getText().toString());
-                        double _toPrice = RATE * _fromPrice;
-                        toPrice.setText(formatNumber(_toPrice, 8));
-                        fromPrice.setText(formatNumber(_fromPrice, 8));
+                        double _toPrice = rate * _fromPrice;
+                        toPrice.setText(formatNumber(_toPrice, 12));
+                        fromPrice.setText(formatNumber(_fromPrice, 12));
                         spinner.setVisibility(View.GONE);
                     }
                 }, new Response.ErrorListener() {
