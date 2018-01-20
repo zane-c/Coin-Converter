@@ -28,10 +28,12 @@
             android:paddingBottom="20dp">
             <EditText
                 android:id="@+id/from_price"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:hint="1.00"
+                android:text="1.00"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textColorHint="@color/lightgrey"
@@ -47,7 +49,7 @@
                 android:textColor="@color/white"
                 android:textColorHint="@color/lightgrey"
                 android:backgroundTint="@color/white"
-                android:hint="BTC"
+                android:text="BTC"
                 android:inputType="textCapCharacters" />
         </LinearLayout>
         <TextView
@@ -66,18 +68,18 @@
             android:orientation="horizontal"
             android:paddingBottom="20dp">
             <EditText
-                android:id="@+id/phone"
+                android:id="@+id/to_price"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:hint="12731.45"
+                android:text="12731.45"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textColorHint="@color/lightgrey"
                 android:backgroundTint="@color/white"
                 android:inputType="phone" />
             <EditText
-                android:id="@+id/symbol"
+                android:id="@+id/to_symbol"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
@@ -86,9 +88,14 @@
                 android:textColor="@color/white"
                 android:textColorHint="@color/lightgrey"
                 android:backgroundTint="@color/white"
-                android:hint="USD"
+                android:text="USD"
                 android:inputType="textCapCharacters" />
 
         </LinearLayout>
+        <ProgressBar
+            android:id="@+id/progressBar1"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
